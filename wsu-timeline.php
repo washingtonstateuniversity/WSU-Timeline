@@ -13,7 +13,7 @@ class WSU_Timeline {
 	 * @var string Current plugin version for cache breaking
 	 */
 	var $version = '0.0.1';
-	
+
 	/**
 	 * Setup plugin.
 	 */
