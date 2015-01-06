@@ -100,6 +100,8 @@ class WSU_Timeline {
 	public function display_timeline_point_meta_box( $post ) {
 		$headline = get_post_meta( $post->ID, '_wsu_tp_headline', true );
 		$sub_headline = get_post_meta( $post->ID, '_wsu_tp_sub_headline', true );
+		$start_date = get_post_meta( $post->ID, '_wsu_tp_start_date', true );
+		$end_date = get_post_meta( $post->ID, '_wsu_tp_end_date', true );
 		$external_url = get_post_meta( $post->ID, '_wsu_tp_external_url', true );
 		$submitter_name = get_post_meta( $post->ID, '_wsu_tp_submitter_name', true );
 		$submitter_email = get_post_meta( $post->ID, '_wsu_tp_submitter_email', true );
@@ -116,10 +118,10 @@ class WSU_Timeline {
 			<input type="text" id="wsu-tp-sub-headline" name="wsu_tp_sub_headline" value="<?php echo esc_attr( $sub_headline ); ?>" />
 
 			<label for="wsu-tp-start-date" class="datepicker-label">Start Date:</label>
-			<input type="text" id="wsu-tp-start-date" name="wsu_tp_start_date" class="datepicker" value="" />
+			<input type="text" id="wsu-tp-start-date" name="wsu_tp_start_date" class="datepicker" value="<?php echo esc_attr( $start_date ); ?>" />
 
 			<label for="wsu-tp-end-date" class="datepicker-label">End Date:</label>
-			<input type="text" id="wsu-tp-end-date" name="wsu_tp_end_date" class="datepicker" value="" />
+			<input type="text" id="wsu-tp-end-date" name="wsu_tp_end_date" class="datepicker" value="<?php echo esc_attr( $end_date ); ?>" />
 
 			<label for="wsu-tp-external-url">External URL:</label>
 			<input type="text" id="wsu-tp-external-url" name="wsu_tp_external_url" value="<?php echo esc_attr( $external_url ); ?>" />
@@ -177,6 +179,18 @@ class WSU_Timeline {
 			update_post_meta( $post_id, '_wsu_tp_sub_headline', sanitize_text_field( $_POST['wsu_tp_sub_headline'] ) );
 		} else {
 			delete_post_meta( $post_id, '_wsu_tp_headline' );
+		}
+
+		if ( isset( $_POST['wsu_tp_start_date'] ) && ! empty( trim( $_POST['wsu_tp_start_date'] ) ) ) {
+			update_post_meta( $post_id, '_wsu_tp_start_date', sanitize_text_field( $_POST['wsu_tp_start_date'] ) );
+		} else {
+			delete_post_meta( $post_id, '_wsu_tp_start_date' );
+		}
+
+		if ( isset( $_POST['wsu_tp_end_date'] ) && ! empty( trim( $_POST['wsu_tp_end_date'] ) ) ) {
+			update_post_meta( $post_id, '_wsu_tp_end_date', sanitize_text_field( $_POST['wsu_tp_end_date'] ) );
+		} else {
+			delete_post_meta( $post_id, '_wsu_tp_end_date' );
 		}
 
 		if ( isset( $_POST['wsu_tp_external_url'] ) && ! empty( trim( $_POST['wsu_tp_external_url'] ) ) ) {
