@@ -25,6 +25,7 @@ class WSU_Timeline {
 	public function __construct() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10 );
 		add_action( 'init', array( $this, 'register_content_type' ), 10 );
+		add_action( 'init', array( $this, 'setup_custom_taxonomies' ), 99 );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 	}
@@ -71,9 +72,21 @@ class WSU_Timeline {
 				'revisions',
 				'thumbnail',
 			),
+			'taxonomies' => array(
+				'category',
+				'post_tag',
+			),
 			'has_archive' => true,
 		);
 		register_post_type( $this->point_content_type_slug, $args );
+	}
+
+	/**
+	 * Explicitly register support for our University taxonomies.
+	 */
+	public function setup_custom_taxonomies() {
+		register_taxonomy_for_object_type( 'wsuwp_university_category', $this->point_content_type_slug );
+		register_taxonomy_for_object_type( 'wsuwp_university_location', $this->point_content_type_slug );
 	}
 
 	/**
