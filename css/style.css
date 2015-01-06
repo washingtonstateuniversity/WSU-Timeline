@@ -1,0 +1,42 @@
+#capture-point-data {
+
+}
+
+#capture-point-data label {
+	clear: left;
+	float: left;
+	margin: 10px 0 0 0;
+	font-size: 1.3em;
+	line-height: 2.1em;
+}
+
+#capture-point-data input,
+#capture-point-data textarea {
+	float: left;
+	padding: 3px 8px;
+	font-size: 1.2em;
+	line-height: 100%;
+	height: 2.2em;
+	width: 100%;
+	outline: 0;
+	margin: 0 0 10px 0 0;
+	background-color: #fff;
+}
+
+#capture-point-data textarea {
+	height: 7em;
+}
+
+#wp-content-editor-tools {
+	background-color: transparent;
+	padding-top: 20px;
+}
+
+#capture-point-data .datepicker {
+	width: 25%;
+	margin-top: 15px;
+}
+
+#capture-point-data .datepicker-label {
+	width: 100px;
+}
