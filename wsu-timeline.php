@@ -23,11 +23,19 @@ class WSU_Timeline {
 	 * Setup plugin.
 	 */
 	public function __construct() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10 );
 		add_action( 'init', array( $this, 'register_content_type' ), 10 );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 	}
 
+	public function admin_enqueue_scripts() {
+		if ( ! is_admin() || get_current_screen()->id !== $this->point_content_type_slug ) {
+			return;
+		}
+
+		wp_enqueue_style( 'wsu-tp-admin-styles', plugins_url( '/css/style.css', __FILE__ ), array(), $this->version );
+	}
 	/**
 	 * Register the content type be used to track points on a timeline.
 	 */
@@ -89,26 +97,30 @@ class WSU_Timeline {
 
 		wp_nonce_field( 'wsu-timeline-save-point', '_wsu_timeline_point_nonce' );
 		?>
-		<label for="wsu-tp-headline">Headline:</label>
-		<input type="text" id="wsu-tp-headline" name="wsu_tp_headline" value="<?php echo esc_attr( $headline ); ?>" />
+		<div id="capture-point-data">
+			<label for="wsu-tp-headline">Headline:</label>
+			<input type="text" id="wsu-tp-headline" name="wsu_tp_headline" value="<?php echo esc_attr( $headline ); ?>" />
 
-		<label for="wsu-tp-sub-headline">Sub headline:</label>
-		<input type="text" id="wsu-tp-sub-headline" name="wsu_tp_sub_headline" value="<?php echo esc_attr( $sub_headline ); ?>" />
+			<label for="wsu-tp-sub-headline">Sub headline:</label>
+			<input type="text" id="wsu-tp-sub-headline" name="wsu_tp_sub_headline" value="<?php echo esc_attr( $sub_headline ); ?>" />
 
-		<label for="wsu-tp-external-url">External URL:</label>
-		<input type="text" id="wsu-tp-external-url" name="wsu_tp_external_url" value="<?php echo esc_attr( $external_url ); ?>" />
+			<label for="wsu-tp-external-url">External URL:</label>
+			<input type="text" id="wsu-tp-external-url" name="wsu_tp_external_url" value="<?php echo esc_attr( $external_url ); ?>" />
 
-		<label for="wsu-tp-submitter-name">Submitter Name:</label>
-		<input type="text" id="wsu-tp-submitter-name" name="wsu_tp_submitter_name" value="<?php echo esc_attr( $submitter_name ); ?>" />
+			<label for="wsu-tp-submitter-name">Submitter Name:</label>
+			<input type="text" id="wsu-tp-submitter-name" name="wsu_tp_submitter_name" value="<?php echo esc_attr( $submitter_name ); ?>" />
 
-		<label for="wsu-tp-submitter-email">Submitter Email:</label>
-		<input type="text" id="wsu-tp-submitter-email" name="wsu_tp_submitter_email" value="<?php echo esc_attr( $submitter_email ); ?>" />
+			<label for="wsu-tp-submitter-email">Submitter Email:</label>
+			<input type="text" id="wsu-tp-submitter-email" name="wsu_tp_submitter_email" value="<?php echo esc_attr( $submitter_email ); ?>" />
 
-		<label for="wsu-tp-submitter-phone">Submitter Phone:</label>
-		<input type="text" id="wsu-tp-submitter-phone" name="wsu_tp_submitter_phone" value="<?php echo esc_attr( $submitter_phone ); ?>" />
+			<label for="wsu-tp-submitter-phone">Submitter Phone:</label>
+			<input type="text" id="wsu-tp-submitter-phone" name="wsu_tp_submitter_phone" value="<?php echo esc_attr( $submitter_phone ); ?>" />
 
-		<label for="wsu-tp-story-source">Story source notes:</label>
-		<textarea id="wsu-tp-story-source" name="wsu_tp_story_source"><?php echo esc_textarea( $submitter_source ); ?></textarea>
+			<label for="wsu-tp-story-source">Story source notes:</label>
+			<textarea id="wsu-tp-story-source" name="wsu_tp_story_source"><?php echo esc_textarea( $submitter_source ); ?></textarea>
+
+			<div class="clear"></div>
+		</div>
 		<?php
 	}
 
