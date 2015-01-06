@@ -31,3 +31,12 @@
 	background-color: transparent;
 	padding-top: 20px;
 }
+
+#capture-point-data .datepicker {
+	width: 25%;
+	margin-top: 15px;
+}
+
+#capture-point-data .datepicker-label {
+	width: 100px;
+}

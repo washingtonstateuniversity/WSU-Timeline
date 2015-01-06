@@ -37,7 +37,9 @@ class WSU_Timeline {
 			return;
 		}
 
+		wp_enqueue_style( 'jquery-ui-styles', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css' );
 		wp_enqueue_style( 'wsu-tp-admin-styles', plugins_url( '/css/style.css', __FILE__ ), array(), $this->version );
+		wp_enqueue_script( 'wsu-tp-admin-scripts', plugins_url( '/js/admin.js', __FILE__ ), array( 'jquery-ui-datepicker' ), $this->version, true );
 	}
 
 	/**
@@ -112,6 +114,12 @@ class WSU_Timeline {
 
 			<label for="wsu-tp-sub-headline">Sub headline:</label>
 			<input type="text" id="wsu-tp-sub-headline" name="wsu_tp_sub_headline" value="<?php echo esc_attr( $sub_headline ); ?>" />
+
+			<label for="wsu-tp-start-date" class="datepicker-label">Start Date:</label>
+			<input type="text" id="wsu-tp-start-date" name="wsu_tp_start_date" class="datepicker" value="" />
+
+			<label for="wsu-tp-end-date" class="datepicker-label">End Date:</label>
+			<input type="text" id="wsu-tp-end-date" name="wsu_tp_end_date" class="datepicker" value="" />
 
 			<label for="wsu-tp-external-url">External URL:</label>
 			<input type="text" id="wsu-tp-external-url" name="wsu_tp_external_url" value="<?php echo esc_attr( $external_url ); ?>" />
