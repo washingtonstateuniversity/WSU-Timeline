@@ -29,6 +29,9 @@ class WSU_Timeline {
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 	}
 
+	/**
+	 * Enqueue the scripts and styles used by the plugin in the admin.
+	 */
 	public function admin_enqueue_scripts() {
 		if ( ! is_admin() || get_current_screen()->id !== $this->point_content_type_slug ) {
 			return;
@@ -36,6 +39,7 @@ class WSU_Timeline {
 
 		wp_enqueue_style( 'wsu-tp-admin-styles', plugins_url( '/css/style.css', __FILE__ ), array(), $this->version );
 	}
+
 	/**
 	 * Register the content type be used to track points on a timeline.
 	 */
