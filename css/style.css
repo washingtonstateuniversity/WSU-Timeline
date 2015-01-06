@@ -26,3 +26,8 @@
 #capture-point-data textarea {
 	height: 7em;
 }
+
+#wp-content-editor-tools {
+	background-color: transparent;
+	padding-top: 20px;
+}

@@ -76,11 +76,16 @@ class WSU_Timeline {
 	 * @param string $post_type The post type page being displayed.
 	 */
 	public function add_meta_boxes( $post_type ) {
+		global $_wp_post_type_features;
+
 		if ( $this->point_content_type_slug !== $post_type ) {
 			return;
 		}
 
-		add_meta_box( 'wsu-timeline-point-data', 'Timeline Point Data', array( $this, 'display_timeline_point_meta_box' ), null );
+		// Remove the default editor box, we'll take care of this on our own.
+		unset( $_wp_post_type_features[ $this->point_content_type_slug ]['editor'] );
+
+		add_meta_box( 'wsu-timeline-point-data', 'Timeline Point Data', array( $this, 'display_timeline_point_meta_box' ), $this->point_content_type_slug, 'normal', 'high' );
 	}
 
 	/**
@@ -122,6 +127,9 @@ class WSU_Timeline {
 			<div class="clear"></div>
 		</div>
 		<?php
+
+		// Add the default WP Editor below other fields we're capturing.
+		wp_editor( $post->post_content, 'content' );
 	}
 
 	/**
