@@ -30,6 +30,7 @@ class WSU_Timeline {
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 
 		add_filter( 'enter_title_here', array( $this, 'modify_enter_title_text' ), 10, 2 );
+		add_filter( 'the_content', array( $this, 'modify_the_content' ), 999, 1 );
 	}
 
 	/**
@@ -260,6 +261,36 @@ class WSU_Timeline {
 		}
 
 		return $title_placeholder;
+	}
+
+	/**
+	 * Modify the display of a timeline item's content to include meta information alongside the
+	 * primary description.
+	 *
+	 * @param string $content Current content for the timeline item.
+	 *
+	 * @return string Modified content.
+	 */
+	public function modify_the_content( $content ) {
+		$post = get_post();
+		if ( $this->point_content_type_slug !== $post->post_type ) {
+			return $content;
+		}
+
+		$sub_headline = get_post_meta( $post->ID, '_wsu_tp_sub_headline', true );
+		$start_date = get_post_meta( $post->ID, '_wsu_tp_start_date', true );
+		$end_date = get_post_meta( $post->ID, '_wsu_tp_end_date', true );
+		$external_url = get_post_meta( $post->ID, '_wsu_tp_external_url', true );
+
+		$html =  '<section class="row single timeline-meta">';
+		$html .= '<h3>' . esc_html( $sub_headline ) . '</h3>';
+		$html .= 'Start Date: <span class="start-date">' . esc_html( $start_date ) . '</span><br />';
+		$html .= 'End Date: <span class="end-date">' . esc_html( $end_date ) . '</span><br />';
+		$html .= '<a href="' . esc_url( $external_url ) . '">' . esc_url( $external_url ) . '</a>';
+		$html .= '</section>';
+		$html .= '<section class="row single timeline-content">' . $content . '</section>';
+
+		return $html;
 	}
 }
 new WSU_Timeline();
