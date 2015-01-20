@@ -1,8 +1,8 @@
-#capture-point-data {
+.capture-point-data {
 
 }
 
-#capture-point-data label {
+.capture-point-data label {
 	clear: left;
 	float: left;
 	margin: 10px 0 0 0;
@@ -10,8 +10,9 @@
 	line-height: 2.1em;
 }
 
-#capture-point-data input,
-#capture-point-data textarea {
+#poststuff #content-description,
+.capture-point-data input,
+.capture-point-data textarea {
 	float: left;
 	padding: 3px 8px;
 	font-size: 1.2em;
@@ -19,11 +20,15 @@
 	height: 2.2em;
 	width: 100%;
 	outline: 0;
-	margin: 0 0 10px 0 0;
+	margin: 10px 0 5px 0;
 	background-color: #fff;
 }
 
-#capture-point-data textarea {
+.capture-point-data	p {
+	float: left;
+}
+
+.capture-point-data textarea {
 	height: 7em;
 }
 
@@ -32,11 +37,29 @@
 	padding-top: 20px;
 }
 
-#capture-point-data .datepicker {
+.capture-point-data .datepicker {
 	width: 25%;
 	margin-top: 15px;
 }
 
-#capture-point-data .datepicker-label {
+.capture-point-data .datepicker-label {
 	width: 100px;
+}
+
+#poststuff #content-description {
+	clear: left;
+	font-weight: 400;
+	padding: 0 0 0 0;
+	margin: 10px 0 0 0;
+	line-height: 2.1rem;
+	height: 2.1rem;
+	color: #444;
+}
+
+#content-description-description {
+	padding-bottom: 0;
+}
+
+#wp-content-editor-tools {
+	padding-top: 5px;
 }
