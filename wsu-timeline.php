@@ -111,7 +111,6 @@ class WSU_Timeline {
 	 * Display a meta box to capture the various data points required for a timeline point.
 	 */
 	public function display_timeline_point_meta_box( $post ) {
-		$headline = get_post_meta( $post->ID, '_wsu_tp_headline', true );
 		$sub_headline = get_post_meta( $post->ID, '_wsu_tp_sub_headline', true );
 		$start_date = get_post_meta( $post->ID, '_wsu_tp_start_date', true );
 		$end_date = get_post_meta( $post->ID, '_wsu_tp_end_date', true );
@@ -124,9 +123,6 @@ class WSU_Timeline {
 		wp_nonce_field( 'wsu-timeline-save-point', '_wsu_timeline_point_nonce' );
 		?>
 		<div id="capture-point-data">
-			<label for="wsu-tp-headline">Headline:</label>
-			<input type="text" id="wsu-tp-headline" name="wsu_tp_headline" value="<?php echo esc_attr( $headline ); ?>" />
-
 			<label for="wsu-tp-sub-headline">Sub headline:</label>
 			<input type="text" id="wsu-tp-sub-headline" name="wsu_tp_sub_headline" value="<?php echo esc_attr( $sub_headline ); ?>" />
 
@@ -180,12 +176,6 @@ class WSU_Timeline {
 
 		if ( 'auto-draft' === $post->post_status ) {
 			return;
-		}
-
-		if ( isset( $_POST['wsu_tp_headline'] ) && ! empty( trim( $_POST['wsu_tp_headline'] ) ) ) {
-			update_post_meta( $post_id, '_wsu_tp_headline', sanitize_text_field( $_POST['wsu_tp_headline'] ) );
-		} else {
-			delete_post_meta( $post_id, '_wsu_tp_headline' );
 		}
 
 		if ( isset( $_POST['wsu_tp_sub_headline'] ) && ! empty( trim( $_POST['wsu_tp_sub_headline'] ) ) ) {
