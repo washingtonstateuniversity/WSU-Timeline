@@ -28,6 +28,8 @@ class WSU_Timeline {
 		add_action( 'init', array( $this, 'setup_custom_taxonomies' ), 99 );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
+		add_action( 'manage_' . $this->point_content_type_slug . '_posts_columns', array( $this, 'manage_item_posts_columns' ), 10, 1 );
+		add_action( 'manage_' . $this->point_content_type_slug . '_posts_custom_column', array( $this, 'manage_item_posts_custom_column' ), 10, 2 );
 
 		add_filter( 'enter_title_here', array( $this, 'modify_enter_title_text' ), 10, 2 );
 		add_filter( 'the_content', array( $this, 'modify_the_content' ), 999, 1 );
@@ -245,6 +247,45 @@ class WSU_Timeline {
 		}
 
 		return;
+	}
+
+	/**
+	 * Modify the columns displayed in the list table for timeline items.
+	 *
+	 * @param array $post_columns Existing list of columns to display.
+	 *
+	 * @return array Modified list of columns to display.
+	 */
+	public function manage_item_posts_columns( $post_columns ) {
+		unset( $post_columns['cb'] );
+		unset( $post_columns['title'] );
+		$new_post_columns = array(
+			'cb' => '<input type="checkbox" />',
+			'title' => 'Headline',
+			'start_date' => 'Start Date',
+			'end_date' => 'End Date',
+		);
+		$post_columns = array_merge( $new_post_columns, $post_columns );
+
+		return $post_columns;
+	}
+
+	/**
+	 * Output data associated with a custom column in the timeline item list table.
+	 *
+	 * @param string $column_name Column being displayed in the row.
+	 * @param int    $post_id     ID of the current row being displayed.
+	 */
+	public function manage_item_posts_custom_column( $column_name, $post_id ) {
+		if ( 'start_date' === $column_name ) {
+			$start_date = get_post_meta( $post_id, '_wsu_tp_start_date', true );
+			echo esc_html( $start_date );
+		}
+
+		if ( 'end_date' === $column_name ) {
+			$end_date = get_post_meta( $post_id, '_wsu_tp_end_date', true );
+			echo esc_html( $end_date );
+		}
 	}
 
 	/**
