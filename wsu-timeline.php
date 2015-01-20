@@ -78,7 +78,10 @@ class WSU_Timeline {
 				'category',
 				'post_tag',
 			),
-			'has_archive' => true,
+			'has_archive' => 'timeline',
+			'rewrite' => array(
+				'slug' => 'timeline/item',
+			)
 		);
 		register_post_type( $this->point_content_type_slug, $args );
 	}
