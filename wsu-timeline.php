@@ -48,16 +48,16 @@ class WSU_Timeline {
 	 */
 	public function register_content_type() {
 		$labels = array(
-			'name'               => __( 'Timeline Points', 'wsuwp_uc' ),
-			'singular_name'      => __( 'Timeline Point', 'wsuwp_uc' ),
-			'all_items'          => __( 'All Timeline Points', 'wsuwp_uc' ),
-			'add_new_item'       => __( 'Add Timeline Point', 'wsuwp_uc' ),
-			'edit_item'          => __( 'Edit Timeline Point', 'wsuwp_uc' ),
-			'new_item'           => __( 'New Timeline Point', 'wsuwp_uc' ),
-			'view_item'          => __( 'View Timeline Point', 'wsuwp_uc' ),
-			'search_items'       => __( 'Search Timeline Points', 'wsuwp_uc' ),
-			'not_found'          => __( 'No Timeline Points found', 'wsuwp_uc' ),
-			'not_found_in_trash' => __( 'No Timeline Points found in trash', 'wsuwp_uc' ),
+			'name'               => __( 'Timeline Items', 'wsuwp_uc' ),
+			'singular_name'      => __( 'Timeline Item', 'wsuwp_uc' ),
+			'all_items'          => __( 'All Timeline Items', 'wsuwp_uc' ),
+			'add_new_item'       => __( 'Add Timeline Item', 'wsuwp_uc' ),
+			'edit_item'          => __( 'Edit Timeline Item', 'wsuwp_uc' ),
+			'new_item'           => __( 'New Timeline Item', 'wsuwp_uc' ),
+			'view_item'          => __( 'View Timeline Item', 'wsuwp_uc' ),
+			'search_items'       => __( 'Search Timeline Items', 'wsuwp_uc' ),
+			'not_found'          => __( 'No Timeline Items found', 'wsuwp_uc' ),
+			'not_found_in_trash' => __( 'No Timeline Items found in trash', 'wsuwp_uc' ),
 		);
 
 		$args = array(
@@ -104,7 +104,7 @@ class WSU_Timeline {
 		// Remove the default editor box, we'll take care of this on our own.
 		unset( $_wp_post_type_features[ $this->point_content_type_slug ]['editor'] );
 
-		add_meta_box( 'wsu-timeline-point-data', 'Timeline Point Data', array( $this, 'display_timeline_point_meta_box' ), $this->point_content_type_slug, 'normal', 'high' );
+		add_meta_box( 'wsu-timeline-point-data', 'Timeline Item Data', array( $this, 'display_timeline_point_meta_box' ), $this->point_content_type_slug, 'normal', 'high' );
 	}
 
 	/**
