@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WSU Timeline (125th)
-Version: 0.0.1
+Version: 0.2.0
 Plugin URI: http://web.wsu.edu
 Description: Provides the content requirements for the display of a timeline.
 Author: washingtonstateuniversity, jeremyfelt
@@ -12,7 +12,7 @@ class WSU_Timeline {
 	/**
 	 * @var string Current plugin version for cache breaking
 	 */
-	var $version = '0.0.1';
+	var $version = '0.2.0';
 
 	/**
 	 * @var string Slug used for the timeline point content type.
