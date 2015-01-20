@@ -277,6 +277,11 @@ class WSU_Timeline {
 			return $content;
 		}
 
+		// Allow a theme to override out filtering of the content.
+		if ( false === apply_filters( 'wsu_timeline_prepend_content', true ) ) {
+			return $content;
+		}
+
 		$sub_headline = get_post_meta( $post->ID, '_wsu_tp_sub_headline', true );
 		$start_date = get_post_meta( $post->ID, '_wsu_tp_start_date', true );
 		$end_date = get_post_meta( $post->ID, '_wsu_tp_end_date', true );
