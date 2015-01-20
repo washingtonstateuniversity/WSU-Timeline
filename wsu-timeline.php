@@ -28,6 +28,8 @@ class WSU_Timeline {
 		add_action( 'init', array( $this, 'setup_custom_taxonomies' ), 99 );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
+
+		add_filter( 'enter_title_here', array( $this, 'modify_enter_title_text' ), 10, 2 );
 	}
 
 	/**
@@ -236,6 +238,22 @@ class WSU_Timeline {
 		}
 
 		return;
+	}
+
+	/**
+	 * Change the post title placeholder text to better match the intent of this post type.
+	 *
+	 * @param string  $title_placeholder Current placeholder text.
+	 * @param WP_Post $post              Current post object.
+	 *
+	 * @return string Replacement placeholder text.
+	 */
+	public function modify_enter_title_text( $title_placeholder, $post ) {
+		if ( $this->point_content_type_slug === $post->post_type ) {
+			return 'Enter item headline';
+		}
+
+		return $title_placeholder;
 	}
 }
 new WSU_Timeline();
