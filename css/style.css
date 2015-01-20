@@ -23,6 +23,10 @@
 	background-color: #fff;
 }
 
+.capture-point-data	p {
+	float: left;
+}
+
 .capture-point-data textarea {
 	height: 7em;
 }

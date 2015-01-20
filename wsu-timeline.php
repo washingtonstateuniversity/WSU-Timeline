@@ -135,7 +135,8 @@ class WSU_Timeline {
 			<label for="wsu-tp-external-url">External URL:</label>
 			<input type="text" id="wsu-tp-external-url" name="wsu_tp_external_url" value="<?php echo esc_attr( $external_url ); ?>" />
 
-			<label for="wsu-tp-story-source">Story source notes:</label>
+			<label for="wsu-tp-story-source">Background Information/Notes:</label>
+			<p class="description">These notes will not be displayed in the public view for a timeline item and can be used as part of the editorial process.</p>
 			<textarea id="wsu-tp-story-source" name="wsu_tp_story_source"><?php echo esc_textarea( $submitter_source ); ?></textarea>
 
 			<div class="clear"></div>
