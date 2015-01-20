@@ -105,6 +105,7 @@ class WSU_Timeline {
 		unset( $_wp_post_type_features[ $this->point_content_type_slug ]['editor'] );
 
 		add_meta_box( 'wsu-timeline-point-data', 'Timeline Item Data', array( $this, 'display_timeline_point_meta_box' ), $this->point_content_type_slug, 'normal', 'high' );
+		add_meta_box( 'wsu-timeline-submitter-data', 'Item Submission Information', array( $this, 'display_timeline_item_submitter_meta_box' ), $this->point_content_type_slug, 'normal', 'default' );
 	}
 
 	/**
@@ -115,14 +116,11 @@ class WSU_Timeline {
 		$start_date = get_post_meta( $post->ID, '_wsu_tp_start_date', true );
 		$end_date = get_post_meta( $post->ID, '_wsu_tp_end_date', true );
 		$external_url = get_post_meta( $post->ID, '_wsu_tp_external_url', true );
-		$submitter_name = get_post_meta( $post->ID, '_wsu_tp_submitter_name', true );
-		$submitter_email = get_post_meta( $post->ID, '_wsu_tp_submitter_email', true );
-		$submitter_phone = get_post_meta( $post->ID, '_wsu_tp_submitter_phone', true );
 		$submitter_source = get_post_meta( $post->ID, '_wsu_tp_story_source', true );
 
 		wp_nonce_field( 'wsu-timeline-save-point', '_wsu_timeline_point_nonce' );
 		?>
-		<div id="capture-point-data">
+		<div class="capture-point-data">
 			<label for="wsu-tp-sub-headline">Sub headline:</label>
 			<input type="text" id="wsu-tp-sub-headline" name="wsu_tp_sub_headline" value="<?php echo esc_attr( $sub_headline ); ?>" />
 
@@ -135,15 +133,6 @@ class WSU_Timeline {
 			<label for="wsu-tp-external-url">External URL:</label>
 			<input type="text" id="wsu-tp-external-url" name="wsu_tp_external_url" value="<?php echo esc_attr( $external_url ); ?>" />
 
-			<label for="wsu-tp-submitter-name">Submitter Name:</label>
-			<input type="text" id="wsu-tp-submitter-name" name="wsu_tp_submitter_name" value="<?php echo esc_attr( $submitter_name ); ?>" />
-
-			<label for="wsu-tp-submitter-email">Submitter Email:</label>
-			<input type="text" id="wsu-tp-submitter-email" name="wsu_tp_submitter_email" value="<?php echo esc_attr( $submitter_email ); ?>" />
-
-			<label for="wsu-tp-submitter-phone">Submitter Phone:</label>
-			<input type="text" id="wsu-tp-submitter-phone" name="wsu_tp_submitter_phone" value="<?php echo esc_attr( $submitter_phone ); ?>" />
-
 			<label for="wsu-tp-story-source">Story source notes:</label>
 			<textarea id="wsu-tp-story-source" name="wsu_tp_story_source"><?php echo esc_textarea( $submitter_source ); ?></textarea>
 
@@ -155,6 +144,26 @@ class WSU_Timeline {
 		wp_editor( $post->post_content, 'content' );
 	}
 
+	public function display_timeline_item_submitter_meta_box( $post ) {
+		$submitter_name = get_post_meta( $post->ID, '_wsu_tp_submitter_name', true );
+		$submitter_email = get_post_meta( $post->ID, '_wsu_tp_submitter_email', true );
+		$submitter_phone = get_post_meta( $post->ID, '_wsu_tp_submitter_phone', true );
+
+		?>
+		<div class="capture-point-data">
+			<label for="wsu-tp-submitter-name">Submitter Name:</label>
+			<input type="text" id="wsu-tp-submitter-name" name="wsu_tp_submitter_name" value="<?php echo esc_attr( $submitter_name ); ?>" />
+
+			<label for="wsu-tp-submitter-email">Submitter Email:</label>
+			<input type="text" id="wsu-tp-submitter-email" name="wsu_tp_submitter_email" value="<?php echo esc_attr( $submitter_email ); ?>" />
+
+			<label for="wsu-tp-submitter-phone">Submitter Phone:</label>
+			<input type="text" id="wsu-tp-submitter-phone" name="wsu_tp_submitter_phone" value="<?php echo esc_attr( $submitter_phone ); ?>" />
+
+			<div class="clear"></div>
+		</div>
+		<?php
+	}
 	/**
 	 * Save all of the meta data associated with a timeline point when saved.
 	 *

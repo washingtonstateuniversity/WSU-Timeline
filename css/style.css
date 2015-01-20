@@ -1,8 +1,8 @@
-#capture-point-data {
+.capture-point-data {
 
 }
 
-#capture-point-data label {
+.capture-point-data label {
 	clear: left;
 	float: left;
 	margin: 10px 0 0 0;
@@ -10,8 +10,8 @@
 	line-height: 2.1em;
 }
 
-#capture-point-data input,
-#capture-point-data textarea {
+.capture-point-data input,
+.capture-point-data textarea {
 	float: left;
 	padding: 3px 8px;
 	font-size: 1.2em;
@@ -23,7 +23,7 @@
 	background-color: #fff;
 }
 
-#capture-point-data textarea {
+.capture-point-data textarea {
 	height: 7em;
 }
 
@@ -32,11 +32,11 @@
 	padding-top: 20px;
 }
 
-#capture-point-data .datepicker {
+.capture-point-data .datepicker {
 	width: 25%;
 	margin-top: 15px;
 }
 
-#capture-point-data .datepicker-label {
+.capture-point-data .datepicker-label {
 	width: 100px;
 }
