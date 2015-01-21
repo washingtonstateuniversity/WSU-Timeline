@@ -40,7 +40,8 @@
 
 .capture-point-data .datepicker {
 	width: 25%;
-	margin-top: 15px;
+	margin-top: 0;
+	clear: left;
 }
 
 .capture-point-data .datepicker-label {
