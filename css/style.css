@@ -39,7 +39,8 @@
 }
 
 .capture-point-data .datepicker {
-	width: 50%;
+	width: 100%;
+	max-width: 175px;
 	margin-top: 0;
 	clear: left;
 }
