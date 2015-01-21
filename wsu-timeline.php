@@ -130,15 +130,22 @@ class WSU_Timeline {
 		?>
 		<div class="capture-point-data">
 			<label for="wsu-tp-sub-headline">Sub headline:</label>
+			<p class="description">This will provide additional context to the primary headline above.</p>
 			<input type="text" id="wsu-tp-sub-headline" name="wsu_tp_sub_headline" value="<?php echo esc_attr( $sub_headline ); ?>" />
 
-			<label for="wsu-tp-start-date" class="datepicker-label">Start Date:</label>
-			<input type="text" id="wsu-tp-start-date" name="wsu_tp_start_date" class="datepicker" value="<?php echo esc_attr( $start_date ); ?>" />
+			<div class="capture-start-date">
+				<label for="wsu-tp-start-date" class="datepicker-label">Start Date:</label>
+				<input type="text" id="wsu-tp-start-date" name="wsu_tp_start_date" class="datepicker" value="<?php echo esc_attr( $start_date ); ?>" />
+			</div>
 
-			<label for="wsu-tp-end-date" class="datepicker-label">End Date:</label>
-			<input type="text" id="wsu-tp-end-date" name="wsu_tp_end_date" class="datepicker" value="<?php echo esc_attr( $end_date ); ?>" />
+			<div class="capture-end-date">
+				<label for="wsu-tp-end-date" class="datepicker-label">End Date:</label>
+				<input type="text" id="wsu-tp-end-date" name="wsu_tp_end_date" class="datepicker" value="<?php echo esc_attr( $end_date ); ?>" />
+			</div>
+			<p class="description">Use the first of the month or first of the year if a specific date is not available.</p>
 
 			<label for="wsu-tp-external-url">External URL:</label>
+			<p class="description">This URL will be displayed publicly to provide a route to external information.</p>
 			<input type="text" id="wsu-tp-external-url" name="wsu_tp_external_url" value="<?php echo esc_attr( $external_url ); ?>" />
 
 			<label for="wsu-tp-story-source">Background Information/Notes:</label>

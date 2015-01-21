@@ -26,6 +26,7 @@
 
 .capture-point-data	p {
 	float: left;
+	clear: left;
 }
 
 .capture-point-data textarea {
@@ -38,8 +39,10 @@
 }
 
 .capture-point-data .datepicker {
-	width: 25%;
-	margin-top: 15px;
+	width: 100%;
+	max-width: 175px;
+	margin-top: 0;
+	clear: left;
 }
 
 .capture-point-data .datepicker-label {
@@ -62,4 +65,16 @@
 
 #wp-content-editor-tools {
 	padding-top: 5px;
+}
+
+.capture-end-date,
+.capture-start-date {
+	float: left;
+	width: 45%;
+	margin-right: 10px;
+}
+
+.capture-end-date .description,
+.capture-start-date .description {
+	width: 75%;
 }
