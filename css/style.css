@@ -26,6 +26,7 @@
 
 .capture-point-data	p {
 	float: left;
+	clear: left;
 }
 
 .capture-point-data textarea {
